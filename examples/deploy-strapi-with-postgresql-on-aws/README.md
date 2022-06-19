@@ -42,8 +42,8 @@ TF_VAR_qovery_organization_id=YOUR_QOVERY_ORG_ID
 
 > If you use this template in production, beware that you have some values to change in `variables.tf`
 
-6. Clone my [URL Shortener application](https://github.com/evoxmusic/ShortMe-URL-Shortener.git)
-7. Edit the `main.tf` file and change `https://github.com/evoxmusic/ShortMe-URL-Shortener.git` with yours
+6. Clone my [Strapi application](https://github.com/evoxmusic/strapi-v4)
+7. Edit the `main.tf` file and change `https://github.com/evoxmusic/strapi-v4.git` with yours
 8. You can now run the Terraform commands
 
 ```shell
