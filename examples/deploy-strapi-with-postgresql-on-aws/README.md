@@ -1,6 +1,6 @@
-# Deploy an application from GitHub on AWS and make it accessible via HTTPS
+# Deploy Strapi with PostgreSQL on AWS
 
-This ready to use example show you how to deploy an application from GitHub on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform file.
+This ready to use example show you how to deploy a Strapi app with PostgreSQL on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform file.
 
 ## Behind the scene
 
@@ -11,15 +11,18 @@ Behind the scene, Qovery will:
    1. Organization `Terraform Demo`
    2. Project `URL Shortener`
    3. Environment `production`
-   4. Application `web app`
-3. Build `web app` application
-4. Push `web app` container image in your ECR registry
-5. Deploy it on your EKS cluster (created by Qovery)
-6. Create an AWS Network Load Balancer
-7. Generate a TLS certificate for your app
-8. Expose publicly via HTTPS your application
+   4. Database `strapi db`
+   5. Application `strapi app`
+   6. Inject all the Secrets and Environment Variables used by Strapi
+3. Build `strapi app` application
+4. Push `strapi app` container image in your ECR registry
+5. Deploy your PostgreSQL database and configure the backups and disk encryption (AWS RDS).
+6. Deploy it on your EKS cluster (created by Qovery)
+7. Create an AWS Network Load Balancer
+8. Generate a TLS certificate for your app
+9. Expose publicly via HTTPS your Strapi app
 
-It will take approximately **20 minutes to create your infrastructure** and **less than 5 minutes to deploy your application**.
+It will take approximately **20 minutes to create your infrastructure** and **less than 10 minutes to deploy your application**.
 
 ## How to use
 
@@ -36,6 +39,8 @@ TF_VAR_aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY \
 TF_VAR_qovery_access_token=YOUR_QOVERY_API_TOKEN \
 TF_VAR_qovery_organization_id=YOUR_QOVERY_ORG_ID
 ```
+
+> If you use this template in production, beware that you have some values to change in `variables.tf`
 
 6. Clone my [URL Shortener application](https://github.com/evoxmusic/ShortMe-URL-Shortener.git)
 7. Edit the `main.tf` file and change `https://github.com/evoxmusic/ShortMe-URL-Shortener.git` with yours
