@@ -1,7 +1,6 @@
 # Deploy an application from GitHub on AWS and make it accessible via HTTPS
 
-This ready to use example show you how to deploy an application from GitHub on AWS and make it accessible via HTTPS. All of that in just a
-few lines of Terraform file.
+This ready to use example show you how to deploy an application from GitHub on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform file.
 
 ## Behind the scene
 
@@ -9,10 +8,18 @@ Behind the scene, Qovery will:
 
 1. Create a full Kubernetes infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS...)
 2. Create Qovery resources:
-  1. Organization `Terraform Demo`
-  2. Project `URL Shortener`
-  3. Environment `production`
-  4. Application `web app`
+   1. Organization `Terraform Demo`
+   2. Project `URL Shortener`
+   3. Environment `production`
+   4. Application `web app`
+3. Build the `web app` application
+4. Push the `web app` container image in your ECR registry
+5. Deploy it on your EKS cluster (created by Qovery)
+6. Create an AWS Network Load Balancer
+7. Generate a TLS certificate for your app
+8. Expose publicly via HTTPS your application
+
+It will take approximately **20 minutes to create your infrastructure** and **less than 5 minutes to deploy your application**.
 
 ## How to use
 

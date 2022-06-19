@@ -10,7 +10,7 @@ and [our community](https://discuss.qovery.com).
 1. [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 2. Clone this repository
 3. Go to the [examples](examples) folder
-4. Pick the example you want and follow the instruction.
+4. Pick the example you want and follow the instructions.
 
 ## Documentation
 
