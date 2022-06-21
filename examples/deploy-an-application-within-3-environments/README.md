@@ -28,7 +28,7 @@ Behind the scene, Qovery:
 8. Generates a TLS certificate for your app for all your apps
 9. Exposes publicly via HTTPS your Strapi app from `Production`, `Staging` and `Dev` through different endpoints
 
-It will take approximately **20 minutes to create your infrastructure** and **less than 10 minutes to deploy your application**.
+It will take approximately **20 minutes to create your infrastructure** and **less than 10 minutes to deploy your application** for each environment. 
 
 ## How to use
 
