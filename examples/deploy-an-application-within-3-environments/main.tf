@@ -304,7 +304,7 @@ resource "qovery_database" "dev_psql_database" {
   ]
 }
 
-resource "qovery_application" "staging_strapi_app" {
+resource "qovery_application" "dev_strapi_app" {
   environment_id = qovery_environment.staging.id
   name           = "strapi app"
   cpu            = 1000
