@@ -6,7 +6,7 @@ This ready to use example show you how to deploy a containerizes app (Strapi) wi
 
 Behind the scene, Qovery:
 
-1. Creates 3 Kubernetes clusters (Production, Staging, Dev) on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
+1. Creates 3 Kubernetes clusters (`Production`, `Staging`, `Dev`) on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
 2. Creates Qovery resources:
    1. Organization `Terraform Demo`
    2. Project `URL Shortener`
@@ -17,8 +17,8 @@ Behind the scene, Qovery:
    7. Database `strapi db` (RDS) for `Staging`
    8. Application `strapi app` for `Staging`
    9. Environment `dev`
-   10. Database `strapi db` (Container with EBS) for development
-   11. Application `strapi app` for development
+   10. Database `strapi db` (Container with EBS) for `Dev`
+   11. Application `strapi app` for `Dev`
    12. Inject all the Secrets and Environment Variables used by the app for every environment
 3. Build `strapi app` application for `Production`, `Staging` and `Dev` environments in parallel
 4. Pushes `strapi app` container image in your ECR registry  for `Production`, `Staging` and `Dev` environments in parallel
