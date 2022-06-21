@@ -47,6 +47,7 @@ resource "qovery_environment" "production" {
   project_id = qovery_project.my_project.id
   name       = "production"
   mode       = "PRODUCTION"
+  cluster_id = qovery_cluster.my_cluster.id
 
   depends_on = [
     qovery_project.my_project

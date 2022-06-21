@@ -20,13 +20,13 @@ This repository contains ready to use Terraform [examples](/examples) with Qover
 
 Here is a list of all the examples
 
-| Description                                                                | Folder                                                 |
-|----------------------------------------------------------------------------|--------------------------------------------------------|
-| Deploy an application from GitHub on AWS and make it accessible via HTTPS  | [here](/examples/deploy-github-app-on-aws-with-https)  |
-| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                  | [here](/examples/deploy-strapi-with-postgresql-on-aws) |
-| Deploy an application within 3 environments (Production, Staging, and Dev) | WIP                                                    |
-| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering  | WIP                                                    |
-| Deploy micro-services within 2 environments (Production and Staging)       | WIP                                                    |
+| Description                                                                       | Folder                                                        |
+|-----------------------------------------------------------------------------------|---------------------------------------------------------------|
+| Deploy an application from GitHub on AWS and make it accessible via HTTPS         | [here](/examples/deploy-github-app-on-aws-with-https)         |
+| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                         | [here](/examples/deploy-strapi-with-postgresql-on-aws)        |
+| Deploy an container app and a PostgreSQL database in Production, Staging, and Dev | [here](/examples/deploy-an-application-within-3-environments) |
+| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering         | WIP                                                           |
+| Deploy micro-services with an API gateway on AWS                                  | WIP                                                           |
 
 ## How to contribute
 

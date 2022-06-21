@@ -4,20 +4,20 @@ This ready to use example show you how to deploy an application from GitHub on A
 
 ## Behind the scene
 
-Behind the scene, Qovery will:
+Behind the scene, Qovery:
 
-1. Create a full Kubernetes infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS...)
-2. Create Qovery resources:
+1. Creates a complete infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
+2. Creates Qovery resources:
    1. Organization `Terraform Demo`
    2. Project `URL Shortener`
    3. Environment `production`
    4. Application `web app`
-3. Build `web app` application
-4. Push `web app` container image in your ECR registry
-5. Deploy it on your EKS cluster (created by Qovery)
-6. Create an AWS Network Load Balancer
-7. Generate a TLS certificate for your app
-8. Expose publicly via HTTPS your application
+3. Builds `web app` application
+4. Pushes `web app` container image in your ECR registry
+5. Deploys it on your EKS cluster (created by Qovery)
+6. Creates an AWS Network Load Balancer
+7. Generates a TLS certificate for your app
+8. Exposes publicly via HTTPS your application
 
 It will take approximately **20 minutes to create your infrastructure** and **less than 5 minutes to deploy your application**.
 

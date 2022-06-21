@@ -4,23 +4,23 @@ This ready to use example show you how to deploy a Strapi app with PostgreSQL on
 
 ## Behind the scene
 
-Behind the scene, Qovery will:
+Behind the scene, Qovery:
 
-1. Create a full Kubernetes infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS...)
-2. Create Qovery resources:
+1. Creates a complete infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
+2. Creates Qovery resources:
    1. Organization `Terraform Demo`
    2. Project `URL Shortener`
    3. Environment `production`
    4. Database `strapi db`
    5. Application `strapi app`
    6. Inject all the Secrets and Environment Variables used by Strapi
-3. Build `strapi app` application
-4. Push `strapi app` container image in your ECR registry
-5. Deploy your PostgreSQL database and configure the backups and disk encryption (AWS RDS).
-6. Deploy it on your EKS cluster (created by Qovery)
-7. Create an AWS Network Load Balancer
-8. Generate a TLS certificate for your app
-9. Expose publicly via HTTPS your Strapi app
+3. Builds `strapi app` application
+4. Pushes `strapi app` container image in your ECR registry
+5. Deploys your PostgreSQL database and configure the backups and disk encryption (AWS RDS).
+6. Deploys it on your EKS cluster (created by Qovery)
+7. Creates an AWS Network Load Balancer
+8. Generates a TLS certificate for your app
+9. Exposes publicly via HTTPS your Strapi app
 
 It will take approximately **20 minutes to create your infrastructure** and **less than 10 minutes to deploy your application**.
 
