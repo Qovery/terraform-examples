@@ -9,7 +9,7 @@ Behind the scene, Qovery:
 1. Creates 3 Kubernetes clusters (`Production`, `Staging`, `Dev`) on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
 2. Creates Qovery resources:
    1. Organization `Terraform Demo`
-   2. Project `URL Shortener`
+   2. Project `Strapi V4`
    3. Environment `production`
    4. Database `strapi db` (RDS) for `Production`
    5. Application `strapi app` for `Production`

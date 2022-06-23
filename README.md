@@ -1,6 +1,7 @@
 # Qovery Terraform Examples
 
-This repository contains ready to use Terraform [examples](/examples) with Qovery to create outstanding cloud infrastructure. Feel free to use them, modify them and share them with us and [our community](https://discuss.qovery.com).
+This repository contains ready to use Terraform [examples](/examples) with Qovery to create outstanding cloud infrastructure. Feel free to
+use them, modify them and share them with us and [our community](https://discuss.qovery.com).
 
 > Watch our live session on [How Getting Started with Terraform and Qovery on AWS](https://www.youtube.com/watch?v=l8D6IrEoIgw)
 
@@ -20,13 +21,13 @@ This repository contains ready to use Terraform [examples](/examples) with Qover
 
 Here is a list of all the examples
 
-| Description                                                                       | Folder                                                        |
-|-----------------------------------------------------------------------------------|---------------------------------------------------------------|
-| Deploy an application from GitHub on AWS and make it accessible via HTTPS         | [here](/examples/deploy-github-app-on-aws-with-https)         |
-| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                         | [here](/examples/deploy-strapi-with-postgresql-on-aws)        |
-| Deploy an container app and a PostgreSQL database in Production, Staging, and Dev | [here](/examples/deploy-an-application-within-3-environments) |
-| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering         | WIP                                                           |
-| Deploy micro-services with an API gateway on AWS                                  | WIP                                                           |
+| Description                                                                       | Folder                                                           |
+|-----------------------------------------------------------------------------------|------------------------------------------------------------------|
+| Deploy an application from GitHub on AWS and make it accessible via HTTPS         | [here](/examples/deploy-github-app-on-aws-with-https)            |
+| Deploy an container app and a PostgreSQL database in Production, Staging, and Dev | [here](/examples/deploy-an-application-within-3-environments)    |
+| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                         | [here](/examples/deploy-strapi-with-postgresql-on-aws)           |
+| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering         | WIP                                                              |
+| Deploy micro-services with an API gateway on AWS                                  | WIP                                                              |
 
 ## How to contribute
 
