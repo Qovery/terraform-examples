@@ -28,6 +28,7 @@ Here is a list of all the examples
 | Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                         | [here](/examples/deploy-strapi-with-postgresql-on-aws)           |
 | Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering         | WIP                                                              |
 | Deploy micro-services with an API gateway on AWS                                  | WIP                                                              |
+| Deploy an application and expose it with Cloudflare CDN                           | WIP                                                              |
 
 ## How to contribute
 
