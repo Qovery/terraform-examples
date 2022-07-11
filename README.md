@@ -21,14 +21,20 @@ use them, modify them and share them with us and [our community](https://discuss
 
 Here is a list of all the examples
 
-| Description                                                                       | Folder                                                           |
-|-----------------------------------------------------------------------------------|------------------------------------------------------------------|
-| Deploy an application from GitHub on AWS and make it accessible via HTTPS         | [here](/examples/deploy-github-app-on-aws-with-https)            |
-| Deploy an container app and a PostgreSQL database in Production, Staging, and Dev | [here](/examples/deploy-an-application-within-3-environments)    |
-| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                         | [here](/examples/deploy-strapi-with-postgresql-on-aws)           |
-| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering         | WIP                                                              |
-| Deploy micro-services with an API gateway on AWS                                  | WIP                                                              |
-| Deploy an application and expose it with Cloudflare CDN                           | WIP                                                              |
+| Description                                                                                     | Folder                                                              |
+|-------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| Deploy an application from GitHub on AWS and make it accessible via HTTPS                       | [here](/examples/deploy-github-app-on-aws-with-https)               |
+| Deploy an container app and a PostgreSQL database in Production, Staging, and Dev               | [here](/examples/deploy-an-application-within-3-environments)       |
+| Deploy [Strapi](https://strapi.io) with PostgreSQL on AWS                                       | [here](/examples/deploy-strapi-with-postgresql-on-aws)              |
+| Deploy [Medusa](https://medusajs.com) with PostgreSQL and Redis on AWS in Prod, Staging and Dev | [here](/examples/deploy-medusa-with-postgresql-and-redis-on-aws)    |
+| Deploy an application and expose it with Cloudflare DNS and CDN                                 | [here](/examples/deploy-an-application-with-cloudflare-dns-and-cdn) |
+| Deploy an application and connect it to MongoDB Atlas via AWS VPC Peering                       | WIP                                                                 |
+| Deploy micro-services with an API gateway on AWS                                                | WIP                                                                 |
+
+[//]: # (| Flagsmith                                                                                       | WIP                                                              |)
+[//]: # (| Meilisearch                                                                                     | WIP                                                              |)
+[//]: # (| Hasura                                                                                          | WIP                                                              |)
+[//]: # (| AppWrite                                                                                        | WIP                                                              |)
 
 ## How to contribute
 
