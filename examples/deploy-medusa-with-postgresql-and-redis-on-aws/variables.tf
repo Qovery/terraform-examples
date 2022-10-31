@@ -23,3 +23,7 @@ variable "medusa_cookie_secret" {
   type    = string
   default = "your-super-secret-pt2" # TO CHANGE FOR PRODUCTION
 }
+
+variable "toto_secret" {
+  type    = string
+}
