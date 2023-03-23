@@ -46,7 +46,6 @@ resource "qovery_application" "backend" {
   name           = "backend"
   cpu            = 500
   memory         = 256
-  state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/evoxmusic/ShortMe-URL-Shortener.git"
     branch    = "main"
