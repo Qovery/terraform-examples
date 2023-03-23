@@ -27,11 +27,6 @@ resource "qovery_cluster" "my_cluster" {
   instance_type     = "T3A_MEDIUM"
   min_running_nodes = 3
   max_running_nodes = 4
-  state             = "RUNNING"
-
-  depends_on = [
-    qovery_aws_credentials.my_aws_creds
-  ]
 }
 
 resource "qovery_project" "my_project" {
@@ -62,11 +57,6 @@ resource "qovery_database" "my_psql_database" {
   mode           = "MANAGED" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.production,
-  ]
 }
 
 resource "qovery_database" "my_redis_database" {
@@ -77,12 +67,6 @@ resource "qovery_database" "my_redis_database" {
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.production,
-    qovery_database.my_psql_database,
-  ]
 }
 
 resource "qovery_application" "medusa_app" {
@@ -90,7 +74,6 @@ resource "qovery_application" "medusa_app" {
   name           = "medusa app"
   cpu            = 1000
   memory         = 512
-  state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/evoxmusic/medusa.git"
     branch    = "main"
@@ -140,12 +123,6 @@ resource "qovery_application" "medusa_app" {
       value = "redis://${qovery_database.my_redis_database.login}:${qovery_database.my_redis_database.password}@${qovery_database.my_redis_database.internal_host}:${qovery_database.my_redis_database.port}"
     }
   ]
-
-  depends_on = [
-    qovery_environment.production,
-    qovery_database.my_psql_database,
-    qovery_database.my_redis_database,
-  ]
 }
 
 resource "qovery_environment" "staging" {
@@ -167,11 +144,6 @@ resource "qovery_database" "my_psql_database_staging" {
   mode           = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.staging,
-  ]
 }
 
 resource "qovery_database" "my_redis_database_staging" {
@@ -182,12 +154,6 @@ resource "qovery_database" "my_redis_database_staging" {
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.staging,
-    qovery_database.my_psql_database_staging,
-  ]
 }
 
 resource "qovery_application" "medusa_app_staging" {
@@ -195,7 +161,6 @@ resource "qovery_application" "medusa_app_staging" {
   name           = "medusa app"
   cpu            = 1000
   memory         = 512
-  state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/evoxmusic/medusa.git"
     branch    = "main"
@@ -245,12 +210,6 @@ resource "qovery_application" "medusa_app_staging" {
       value = "redis://${qovery_database.my_redis_database_staging.login}:${qovery_database.my_redis_database_staging.password}@${qovery_database.my_redis_database_staging.internal_host}:${qovery_database.my_redis_database_staging.port}"
     }
   ]
-
-  depends_on = [
-    qovery_environment.staging,
-    qovery_database.my_psql_database_staging,
-    qovery_database.my_redis_database_staging,
-  ]
 }
 
 resource "qovery_environment" "dev" {
@@ -258,10 +217,6 @@ resource "qovery_environment" "dev" {
   name       = "dev"
   mode       = "DEVELOPMENT"
   cluster_id = qovery_cluster.my_cluster.id
-
-  depends_on = [
-    qovery_project.my_project
-  ]
 }
 
 resource "qovery_database" "my_psql_database_dev" {
@@ -272,11 +227,6 @@ resource "qovery_database" "my_psql_database_dev" {
   mode           = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.dev,
-  ]
 }
 
 resource "qovery_database" "my_redis_database_dev" {
@@ -287,12 +237,6 @@ resource "qovery_database" "my_redis_database_dev" {
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
-  state          = "RUNNING"
-
-  depends_on = [
-    qovery_environment.dev,
-    qovery_database.my_psql_database_dev,
-  ]
 }
 
 resource "qovery_application" "medusa_app_dev" {
@@ -300,7 +244,6 @@ resource "qovery_application" "medusa_app_dev" {
   name           = "medusa app"
   cpu            = 1000
   memory         = 512
-  state          = "RUNNING"
   auto_preview   = false
   git_repository = {
     url       = "https://github.com/evoxmusic/medusa.git"
@@ -350,11 +293,5 @@ resource "qovery_application" "medusa_app_dev" {
       key   = "REDIS_URL"
       value = "redis://${qovery_database.my_redis_database_dev.login}:${qovery_database.my_redis_database_dev.password}@${qovery_database.my_redis_database_dev.internal_host}:${qovery_database.my_redis_database_dev.port}"
     }
-  ]
-
-  depends_on = [
-    qovery_environment.dev,
-    qovery_database.my_psql_database_dev,
-    qovery_database.my_redis_database_dev,
   ]
 }

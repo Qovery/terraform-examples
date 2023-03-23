@@ -27,11 +27,6 @@ resource "qovery_cluster" "my_cluster" {
   instance_type     = "T3A_MEDIUM"
   min_running_nodes = 3
   max_running_nodes = 4
-  state             = "RUNNING"
-
-  depends_on = [
-    qovery_aws_credentials.my_aws_creds
-  ]
 }
 
 resource "qovery_project" "my_project" {
@@ -48,10 +43,6 @@ resource "qovery_environment" "production" {
   name       = "production"
   mode       = "PRODUCTION"
   cluster_id = qovery_cluster.my_cluster.id
-
-  depends_on = [
-    qovery_project.my_project
-  ]
 }
 
 resource "qovery_database" "my_psql_database" {
@@ -62,12 +53,6 @@ resource "qovery_database" "my_psql_database" {
   mode           = "MANAGED" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
-  state          = "RUNNING"
-
-
-  depends_on = [
-    qovery_environment.production,
-  ]
 }
 
 resource "qovery_application" "strapi_app" {
@@ -75,7 +60,6 @@ resource "qovery_application" "strapi_app" {
   name           = "strapi app"
   cpu            = 1000
   memory         = 512
-  state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/evoxmusic/strapi-v4.git"
     branch    = "main"
@@ -136,10 +120,5 @@ resource "qovery_application" "strapi_app" {
       key   = "DATABASE_PASSWORD"
       value = qovery_database.my_psql_database.password
     }
-  ]
-
-  depends_on = [
-    qovery_environment.production,
-    qovery_database.my_psql_database,
   ]
 }

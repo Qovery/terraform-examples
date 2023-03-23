@@ -35,20 +35,11 @@ resource "qovery_cluster" "my_cluster" {
   instance_type     = "T3A_MEDIUM"
   min_running_nodes = 3
   max_running_nodes = 4
-  state             = "RUNNING"
-
-  depends_on = [
-    qovery_aws_credentials.my_aws_creds
-  ]
 }
 
 resource "qovery_project" "my_project" {
   organization_id = var.qovery_organization_id
   name            = "URL Shortener"
-
-  depends_on = [
-    qovery_cluster.my_cluster
-  ]
 }
 
 resource "qovery_environment" "production" {
@@ -56,10 +47,6 @@ resource "qovery_environment" "production" {
   name       = "production"
   mode       = "PRODUCTION"
   cluster_id = qovery_cluster.my_cluster.id
-
-  depends_on = [
-    qovery_project.my_project
-  ]
 }
 
 # create and deploy app with custom domain
@@ -68,7 +55,6 @@ resource "qovery_application" "backend" {
   name           = "backend"
   cpu            = 500
   memory         = 256
-  state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/evoxmusic/ShortMe-URL-Shortener.git"
     branch    = "main"
@@ -97,10 +83,11 @@ resource "qovery_application" "backend" {
       value = "false"
     }
   ]
+}
 
-  depends_on = [
-    qovery_environment.production,
-  ]
+resource "qovery_deployment" "prod_deployment" {
+  environment_id = qovery_environment.production.id
+  desired_state  = "RUNNING"
 }
 
 # create custom domain record

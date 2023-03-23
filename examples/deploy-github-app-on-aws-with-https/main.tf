@@ -10,7 +10,7 @@ provider "qovery" {
   token = var.qovery_access_token
 }
 
-resource "qovery_aws_credentials" "my_aws_creds" {
+resource "qovery_aws_credentials" "my_aws_creds_2" {
   organization_id   = var.qovery_organization_id
   name              = "My AWS Creds"
   access_key_id     = var.aws_access_key_id
@@ -19,7 +19,7 @@ resource "qovery_aws_credentials" "my_aws_creds" {
 
 resource "qovery_cluster" "my_cluster" {
   organization_id   = var.qovery_organization_id
-  credentials_id    = qovery_aws_credentials.my_aws_creds.id
+  credentials_id    = qovery_aws_credentials.my_aws_creds_2.id
   name              = "Demo cluster"
   description       = "Terraform demo cluster"
   cloud_provider    = "AWS"
@@ -27,20 +27,11 @@ resource "qovery_cluster" "my_cluster" {
   instance_type     = "T3A_MEDIUM"
   min_running_nodes = 3
   max_running_nodes = 4
-  state             = "RUNNING"
-
-  depends_on = [
-    qovery_aws_credentials.my_aws_creds
-  ]
 }
 
 resource "qovery_project" "my_project" {
   organization_id = var.qovery_organization_id
   name            = "URL Shortener"
-
-  depends_on = [
-    qovery_cluster.my_cluster
-  ]
 }
 
 resource "qovery_environment" "production" {
@@ -48,10 +39,6 @@ resource "qovery_environment" "production" {
   name       = "production"
   mode       = "PRODUCTION"
   cluster_id = qovery_cluster.my_cluster.id
-
-  depends_on = [
-    qovery_project.my_project
-  ]
 }
 
 resource "qovery_application" "backend" {
@@ -86,9 +73,5 @@ resource "qovery_application" "backend" {
       key   = "DEBUG"
       value = "false"
     }
-  ]
-
-  depends_on = [
-    qovery_environment.production,
   ]
 }
