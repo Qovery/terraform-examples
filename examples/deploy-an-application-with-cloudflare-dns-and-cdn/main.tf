@@ -32,7 +32,7 @@ resource "qovery_cluster" "my_cluster" {
   description       = "Terraform demo cluster"
   cloud_provider    = "AWS"
   region            = "us-east-2"
-  instance_type     = "T3A_MEDIUM"
+  instance_type     = "t3a.medium"
   min_running_nodes = 3
   max_running_nodes = 4
 }
