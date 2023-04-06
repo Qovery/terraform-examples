@@ -3,19 +3,11 @@ terraform {
     qovery = {
       source = "qovery/qovery"
     }
-    cloudflare = {
-      source = "cloudflare/cloudflare"
-    }
   }
 }
 
 provider "qovery" {
   token = var.qovery_access_token
-}
-
-provider "cloudflare" {
-  email     = var.cloudflare_email
-  api_token = var.cloudflare_api_token
 }
 
 resource "qovery_aws_credentials" "my_aws_creds" {
@@ -39,7 +31,7 @@ resource "qovery_cluster" "my_cluster" {
 
 resource "qovery_project" "my_project" {
   organization_id = var.qovery_organization_id
-  name            = "URL Shortener"
+  name            = "Cron-job"
 }
 
 resource "qovery_environment" "production" {
@@ -49,52 +41,62 @@ resource "qovery_environment" "production" {
   cluster_id = qovery_cluster.my_cluster.id
 }
 
-# create and deploy app with custom domain
-resource "qovery_application" "backend" {
+# create and deploy cron job
+resource "qovery_job" "cron-job" {
   environment_id = qovery_environment.production.id
-  name           = "backend"
-  cpu            = 500
-  memory         = 256
-  git_repository = {
-    url       = "https://github.com/evoxmusic/ShortMe-URL-Shortener.git"
-    branch    = "main"
-    root_path = "/"
+  name           = "cron-job"
+  
+  cpu = 100
+  memory = 350
+  
+  max_duration_seconds = 60
+  max_nb_restart = 1
+  
+  port = 4000
+  
+  auto_preview = false
+  
+  schedule = {
+    cronjob = {
+      schedule = "*/2 * * * *" # every 2 minutes
+      command = {
+        entrypoint = ""
+        arguments = []
+      }
+    }
   }
-  build_mode            = "DOCKER"
-  dockerfile_path       = "Dockerfile"
-  min_running_instances = 1
-  max_running_instances = 1
-  custom_domains        = [
-    {
-      domain = var.qovery_custom_domain
+  
+  source = {
+    docker = {
+      dockerfile_path = "Dockerfile"
+      git_repository = {
+        url = "https://github.com/Qovery/terraform-provider-testing.git"
+        branch = "job-echo-n-seconds"
+        root_path = "/"
+      }
     }
-  ]
-  ports = [
-    {
-      internal_port       = 5555
-      external_port       = 443
-      protocol            = "HTTP"
-      publicly_accessible = true
-    }
-  ]
+  }
+
   environment_variables = [
-    {
-      key   = "DEBUG"
-      value = "false"
-    }
+      {
+        key   = "PORT"
+        value = "4000"
+      },
+      {
+        key   = "DURATION_SECONDS"
+        value = "15"
+      },
+  ]
+
+  secrets = [
+      {
+        key   = "JOB_SECRET"
+        value = "my job secret"
+      },
   ]
 }
 
 resource "qovery_deployment" "prod_deployment" {
   environment_id = qovery_environment.production.id
   desired_state  = "RUNNING"
-}
-
-# create custom domain record
-resource "cloudflare_record" "foobar" {
-  zone_id = var.cloudflare_zone_id
-  name    = var.cloudflare_record_name
-  value   = one(qovery_application.backend.custom_domains[*].validation_domain)
-  type    = "CNAME"
-  ttl     = 3600
 }

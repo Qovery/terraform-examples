@@ -24,7 +24,7 @@ resource "qovery_cluster" "production_cluster" {
   description       = "Terraform prod demo cluster"
   cloud_provider    = "AWS"
   region            = "us-east-2"
-  instance_type     = "T3A_MEDIUM"
+  instance_type     = "t3a.medium"
   min_running_nodes = 3
   max_running_nodes = 4
 }
@@ -36,7 +36,7 @@ resource "qovery_cluster" "staging_cluster" {
   description       = "Terraform staging demo cluster"
   cloud_provider    = "AWS"
   region            = "us-east-2"
-  instance_type     = "T3A_MEDIUM"
+  instance_type     = "t3a.medium"
   min_running_nodes = 3
   max_running_nodes = 4
 }
@@ -48,7 +48,7 @@ resource "qovery_cluster" "dev_cluster" {
   description       = "Terraform dev demo cluster"
   cloud_provider    = "AWS"
   region            = "us-east-2"
-  instance_type     = "T3A_MEDIUM"
+  instance_type     = "t3a.medium"
   min_running_nodes = 3
   max_running_nodes = 4
 }
