@@ -40,7 +40,10 @@ TF_VAR_qovery_organization_id=YOUR_QOVERY_ORG_ID
 ```
 
 6. Clone my [Echo app](https://github.com/Qovery/terraform-provider-testing.git)
-7. Edit the `main.tf` file and change `https://github.com/Qovery/terraform-provider-testing.git` with yours 
+7. Edit the `main.tf` file and change:
+- Resource `resource "qovery_job" "cron-job"` field `source.git_repository.url` (=`https://github.com/Qovery/terraform-provider-testing.git`) with yours
+- Resource `resource "qovery_job" "cron-job"` field `source.git_repository.branch` (=`job-echo-n-seconds`) with yours
+8. Edit the ``
 8. You can now run the Terraform commands
 
 ```shell

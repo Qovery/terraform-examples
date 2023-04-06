@@ -72,7 +72,7 @@ resource "qovery_job" "cron-job" {
       git_repository = {
         url = "https://github.com/Qovery/terraform-provider-testing.git"
         branch = "job-echo-n-seconds"
-        root_path = null
+        root_path = "/"
       }
     }
   }
