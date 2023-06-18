@@ -96,8 +96,35 @@ resource "qovery_application" "production_strapi_app" {
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
   environment_variables = [
     {
       key   = "PORT"
@@ -186,8 +213,35 @@ resource "qovery_application" "staging_strapi_app" {
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
   environment_variables = [
     {
       key   = "PORT"
@@ -276,8 +330,35 @@ resource "qovery_application" "dev_strapi_app" {
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        http = {
+          port = 1337
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
   environment_variables = [
     {
       key   = "PORT"
