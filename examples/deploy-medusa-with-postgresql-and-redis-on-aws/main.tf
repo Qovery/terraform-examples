@@ -63,7 +63,7 @@ resource "qovery_database" "my_redis_database" {
   environment_id = qovery_environment.production.id
   name           = "medusa redis db"
   type           = "REDIS"
-  version        = "6"
+  version        = "6.2"
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
@@ -150,7 +150,7 @@ resource "qovery_database" "my_redis_database_staging" {
   environment_id = qovery_environment.staging.id
   name           = "medusa redis db"
   type           = "REDIS"
-  version        = "6"
+  version        = "6.2"
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
@@ -233,7 +233,7 @@ resource "qovery_database" "my_redis_database_dev" {
   environment_id = qovery_environment.dev.id
   name           = "medusa redis db"
   type           = "REDIS"
-  version        = "6"
+  version        = "6.2"
   mode           = "CONTAINER"
   storage        = 10 # 10GB of storage
   accessibility  = "PRIVATE"
