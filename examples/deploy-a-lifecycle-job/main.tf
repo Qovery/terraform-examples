@@ -45,17 +45,17 @@ resource "qovery_environment" "production" {
 resource "qovery_job" "lifecycle-job-on-start-on-stop" {
   environment_id = qovery_environment.production.id
   name           = "lifecycle-job-on-start-on-stop"
-  
-  cpu = 100
+
+  cpu    = 100
   memory = 350
-  
+
   max_duration_seconds = 60
-  max_nb_restart = 1
-  
+  max_nb_restart       = 1
+
   port = 4000
-  
+
   auto_preview = false
-  
+
   schedule = {
     on_start = {
       entrypoint = ""
@@ -66,87 +66,90 @@ resource "qovery_job" "lifecycle-job-on-start-on-stop" {
       arguments = []
     }
   }
-  
+
   source = {
     docker = {
       dockerfile_path = "Dockerfile"
       git_repository = {
-        url = "https://github.com/Qovery/terraform-provider-testing.git"
-        branch = "job-echo-n-seconds"
+        url       = "https://github.com/Qovery/terraform-provider-testing.git"
+        branch    = "job-echo-n-seconds"
         root_path = "/"
       }
     }
   }
 
   environment_variables = [
-      {
-        key   = "PORT"
-        value = "4000"
-      },
-      {
-        key   = "DURATION_SECONDS"
-        value = "15"
-      },
+    {
+      key   = "PORT"
+      value = "4000"
+    },
+    {
+      key   = "DURATION_SECONDS"
+      value = "15"
+    },
   ]
 
   secrets = [
-      {
-        key   = "JOB_SECRET"
-        value = "my job secret"
-      },
+    {
+      key   = "JOB_SECRET"
+      value = "my job secret"
+    },
   ]
+  healthchecks = {}
 }
 
 # create and deploy lifecycle job on delete
 resource "qovery_job" "lifecycle-job-on-delete" {
   environment_id = qovery_environment.production.id
   name           = "lifecycle-job-on-delete"
-  
-  cpu = 100
+
+  cpu    = 100
   memory = 350
-  
+
   max_duration_seconds = 60
-  max_nb_restart = 1
-  
+  max_nb_restart       = 1
+
   port = 4000
-  
+
   auto_preview = false
-  
+
   schedule = {
     on_delete = {
       entrypoint = ""
       arguments = []
     }
   }
-  
+
   source = {
     docker = {
       dockerfile_path = "Dockerfile"
       git_repository = {
-        url = "https://github.com/Qovery/terraform-provider-testing.git"
-        branch = "job-echo-n-seconds"
+        url       = "https://github.com/Qovery/terraform-provider-testing.git"
+        branch    = "job-echo-n-seconds"
         root_path = "/"
       }
     }
   }
 
   environment_variables = [
-      {
-        key   = "PORT"
-        value = "4000"
-      },
-      {
-        key   = "DURATION_SECONDS"
-        value = "15"
-      },
+    {
+      key   = "PORT"
+      value = "4000"
+    },
+    {
+      key   = "DURATION_SECONDS"
+      value = "15"
+    },
   ]
 
   secrets = [
-      {
-        key   = "JOB_SECRET"
-        value = "my job secret"
-      },
+    {
+      key   = "JOB_SECRET"
+      value = "my job secret"
+    },
   ]
+
+  healthchecks = {}
 }
 
 resource "qovery_deployment" "prod_deployment" {

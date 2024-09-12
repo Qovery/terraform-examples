@@ -45,17 +45,17 @@ resource "qovery_environment" "production" {
 resource "qovery_job" "cron-job" {
   environment_id = qovery_environment.production.id
   name           = "cron-job"
-  
-  cpu = 100
+
+  cpu    = 100
   memory = 350
-  
+
   max_duration_seconds = 60
-  max_nb_restart = 1
-  
+  max_nb_restart       = 1
+
   port = 4000
-  
+
   auto_preview = false
-  
+
   schedule = {
     cronjob = {
       schedule = "*/2 * * * *" # every 2 minutes
@@ -65,34 +65,36 @@ resource "qovery_job" "cron-job" {
       }
     }
   }
-  
+
   source = {
     docker = {
       dockerfile_path = "Dockerfile"
       git_repository = {
-        url = "https://github.com/Qovery/terraform-provider-testing.git"
-        branch = "job-echo-n-seconds"
+        url       = "https://github.com/Qovery/terraform-provider-testing.git"
+        branch    = "job-echo-n-seconds"
         root_path = "/"
       }
     }
   }
 
+  healthchecks = {}
+
   environment_variables = [
-      {
-        key   = "PORT"
-        value = "4000"
-      },
-      {
-        key   = "DURATION_SECONDS"
-        value = "15"
-      },
+    {
+      key   = "PORT"
+      value = "4000"
+    },
+    {
+      key   = "DURATION_SECONDS"
+      value = "15"
+    },
   ]
 
   secrets = [
-      {
-        key   = "JOB_SECRET"
-        value = "my job secret"
-      },
+    {
+      key   = "JOB_SECRET"
+      value = "my job secret"
+    },
   ]
 }
 

@@ -57,6 +57,7 @@ resource "qovery_application" "backend_1" {
   max_running_instances = 1
 
   deployment_stage_id = qovery_deployment_stage.first_deployment_stage.id
+  healthchecks = {}
 }
 
 resource "qovery_application" "backend_2" {
@@ -75,6 +76,7 @@ resource "qovery_application" "backend_2" {
   max_running_instances = 1
 
   deployment_stage_id = qovery_deployment_stage.second_deployment_stage.id
+  healthchecks = {}
 }
 
 resource "qovery_application" "backend_3" {
@@ -93,6 +95,7 @@ resource "qovery_application" "backend_3" {
   max_running_instances = 1
 
   deployment_stage_id = qovery_deployment_stage.third_deployment_stage.id
+  healthchecks = {}
 }
 
 resource "qovery_deployment" "prod_deployment" {
