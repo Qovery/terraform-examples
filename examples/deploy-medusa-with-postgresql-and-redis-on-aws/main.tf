@@ -54,8 +54,8 @@ resource "qovery_database" "my_psql_database" {
   name           = "medusa psql db"
   type           = "POSTGRESQL"
   version        = "13"
-  mode           = "MANAGED" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
-  storage        = 10 # 10GB of storage
+  mode = "MANAGED" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
 }
 
@@ -65,7 +65,7 @@ resource "qovery_database" "my_redis_database" {
   type           = "REDIS"
   version        = "6.2"
   mode           = "CONTAINER"
-  storage        = 10 # 10GB of storage
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE"
 }
 
@@ -83,12 +83,13 @@ resource "qovery_application" "medusa_app" {
   dockerfile_path       = "Dockerfile"
   min_running_instances = 1
   max_running_instances = 1
-  ports                 = [
+  ports = [
     {
       internal_port       = 9000
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
   environment_variables = [
@@ -141,8 +142,8 @@ resource "qovery_database" "my_psql_database_staging" {
   name           = "medusa psql db"
   type           = "POSTGRESQL"
   version        = "13"
-  mode           = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
-  storage        = 10 # 10GB of storage
+  mode = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
 }
 
@@ -152,7 +153,7 @@ resource "qovery_database" "my_redis_database_staging" {
   type           = "REDIS"
   version        = "6.2"
   mode           = "CONTAINER"
-  storage        = 10 # 10GB of storage
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE"
 }
 
@@ -170,12 +171,13 @@ resource "qovery_application" "medusa_app_staging" {
   dockerfile_path       = "Dockerfile"
   min_running_instances = 1
   max_running_instances = 1
-  ports                 = [
+  ports = [
     {
       internal_port       = 9000
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
   environment_variables = [
@@ -224,8 +226,8 @@ resource "qovery_database" "my_psql_database_dev" {
   name           = "medusa psql db"
   type           = "POSTGRESQL"
   version        = "13"
-  mode           = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
-  storage        = 10 # 10GB of storage
+  mode = "CONTAINER" # Use AWS RDS for PostgreSQL (backup and PITR automatically configured by Qovery)
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE" # do not make it publicly accessible
 }
 
@@ -235,7 +237,7 @@ resource "qovery_database" "my_redis_database_dev" {
   type           = "REDIS"
   version        = "6.2"
   mode           = "CONTAINER"
-  storage        = 10 # 10GB of storage
+  storage = 10 # 10GB of storage
   accessibility  = "PRIVATE"
 }
 
@@ -254,12 +256,13 @@ resource "qovery_application" "medusa_app_dev" {
   dockerfile_path       = "Dockerfile"
   min_running_instances = 1
   max_running_instances = 1
-  ports                 = [
+  ports = [
     {
       internal_port       = 9000
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
   environment_variables = [

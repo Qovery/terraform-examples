@@ -55,12 +55,13 @@ resource "qovery_application" "backend" {
   buildpack_language    = "PYTHON"
   min_running_instances = 1
   max_running_instances = 1
-  ports                 = [
+  ports = [
     {
       internal_port       = 3333
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
   environment_variables = [
@@ -73,4 +74,34 @@ resource "qovery_application" "backend" {
       value = "false"
     }
   ]
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          scheme = "HTTP"
+          port   = 3333
+          path   = "/"
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        http = {
+          scheme = "HTTP"
+          port   = 3333
+          path   = "/"
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 }

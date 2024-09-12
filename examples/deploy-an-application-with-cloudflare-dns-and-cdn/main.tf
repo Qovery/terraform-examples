@@ -64,7 +64,7 @@ resource "qovery_application" "backend" {
   dockerfile_path       = "Dockerfile"
   min_running_instances = 1
   max_running_instances = 1
-  custom_domains        = [
+  custom_domains = [
     {
       domain = var.qovery_custom_domain
     }
@@ -75,6 +75,7 @@ resource "qovery_application" "backend" {
       external_port       = 443
       protocol            = "HTTP"
       publicly_accessible = true
+      is_default          = true
     }
   ]
   environment_variables = [
@@ -83,6 +84,36 @@ resource "qovery_application" "backend" {
       value = "false"
     }
   ]
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          scheme = "HTTP"
+          port   = 5555
+          path   = "/"
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        http = {
+          scheme = "HTTP"
+          port   = 5555
+          path   = "/"
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 10
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 }
 
 resource "qovery_deployment" "prod_deployment" {
@@ -94,7 +125,7 @@ resource "qovery_deployment" "prod_deployment" {
 resource "cloudflare_record" "foobar" {
   zone_id = var.cloudflare_zone_id
   name    = var.cloudflare_record_name
-  value   = one(qovery_application.backend.custom_domains[*].validation_domain)
+  value = one(qovery_application.backend.custom_domains[*].validation_domain)
   type    = "CNAME"
   ttl     = 3600
 }
