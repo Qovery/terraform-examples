@@ -1,10 +1,10 @@
 # Deploy an application from GitHub on AWS and make it accessible via HTTPS
 
-This ready to use example show you how to deploy an application from GitHub on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform file.
+This ready to use example shows you how to deploy an application from GitHub on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform file.
 
-## Behind the scene
+## Behind the scenes
 
-Behind the scene, Qovery:
+Behind the scenes, Qovery:
 
 1. Creates a complete infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
 2. Creates Qovery resources:
@@ -28,7 +28,7 @@ It will take approximately **20 minutes to create your infrastructure** and **le
 3. Install the [Qovery CLI](https://hub.qovery.com/docs/using-qovery/interface/cli/) and [generate an API Token](https://hub.qovery.com/docs/using-qovery/interface/cli/#generate-api-token) with this guide.
 4. Generate your AWS credentials (`Access Key ID` and `Secret Access Key`)
    with [this guide](https://hub.qovery.com/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account)
-5. Open you terminal and run the following command by changing the values:
+5. Open your terminal and run the following command by changing the values:
 
 ```shell
 export TF_VAR_aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID \
