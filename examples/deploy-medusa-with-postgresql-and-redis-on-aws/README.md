@@ -1,10 +1,10 @@
 # Deploy Medusa with PostgreSQL and Redis on AWS
 
-This ready to use example show you how to deploy a [Medusa](https://medusajs.com) app with PostgreSQL and Redis on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform.
+This ready to use example shows you how to deploy a [Medusa](https://medusajs.com) app with PostgreSQL and Redis on AWS and make it accessible via HTTPS. All of that in just a few lines of Terraform.
 
-## Behind the scene
+## Behind the scenes
 
-Behind the scene, Qovery:
+Behind the scenes, Qovery:
 
 1. Creates a complete infrastructure on your AWS account (VPC, Security Groups, Subnet, EKS/Kubernetes...)
 2. Creates Qovery resources:
@@ -17,7 +17,7 @@ Behind the scene, Qovery:
    6. Inject all the Secrets and Environment Variables used by Medusa
 3. Builds `medusa app` application
 4. Pushes `medusa app` container image in your ECR registry
-5. Deploys your PostgreSQL database and configure the backups and disk encryption (AWS RDS).
+5. Deploys your PostgreSQL database and configures the backups and disk encryption (AWS RDS).
 6. Deploys it on your EKS cluster (created by Qovery)
 7. Creates an AWS Network Load Balancer
 8. Generates a TLS certificate for your app
@@ -32,7 +32,7 @@ It will take approximately **20 minutes to create your infrastructure** and **le
 3. Install the [Qovery CLI](https://hub.qovery.com/docs/using-qovery/interface/cli/) and [generate an API Token](https://hub.qovery.com/docs/using-qovery/interface/cli/#generate-api-token) with this guide.
 4. Generate your AWS credentials (`Access Key ID` and `Secret Access Key`)
    with [this guide](https://hub.qovery.com/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account)
-5. Open you terminal and run the following command by changing the values:
+5. Open your terminal and run the following command by changing the values:
 
 ```shell
 export TF_VAR_aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID \

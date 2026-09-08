@@ -1,10 +1,10 @@
 # Deploy services with a specific order
 
-This ready to use example show you how to deploy 3 applications with a specific order. 
+This ready to use example shows you how to deploy 3 applications with a specific order. 
 
 Backend 1 -> Backend 2 -> Backend 3
 
-Each backend application have their own [deployment stage](https://hub.qovery.com/docs/using-qovery/deployment/deployment-pipeline/). 
+Each backend application has its own [deployment stage](https://hub.qovery.com/docs/using-qovery/deployment/deployment-pipeline/). 
 
 ## How to use
 
@@ -13,7 +13,7 @@ Each backend application have their own [deployment stage](https://hub.qovery.co
 3. Install the [Qovery CLI](https://hub.qovery.com/docs/using-qovery/interface/cli/) and [generate an API Token](https://hub.qovery.com/docs/using-qovery/interface/cli/#generate-api-token) with this guide.
 4. Generate your AWS credentials (`Access Key ID` and `Secret Access Key`)
    with [this guide](https://hub.qovery.com/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account)
-5. Open you terminal and run the following command by changing the values:
+5. Open your terminal and run the following command by changing the values:
 
 ```shell
 export TF_VAR_aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID \
